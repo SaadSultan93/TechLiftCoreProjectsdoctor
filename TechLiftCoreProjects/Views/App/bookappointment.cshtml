@@ -1,0 +1,134 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+<div class="modal" id="modal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <div class="modal-body">
+              
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<div style="left:300;top:30;background-color:darkslategrey">
+    <div class="row">
+        <h1>View Doctors by Department</h1>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.dpt)
+        {
+
+            <div class="col-md-2">
+                <a class="btn btn-success" asp-action="show" asp-controller="doc" asp-route-deptid="@item.DeptId" >@item.DeptName</a>
+            </div>
+
+        }
+      
+    </div>
+  
+    
+</div>
+
+
+<div style="left:300;top:30;background-color:darkslategrey">
+    <div class="row">
+        <h1>View Doctors by Department</h1>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.dpt)
+        {
+
+            <div class="col-md-2">
+                <a class="btn btn-success" onclick="OpenPopup('@item.DeptId')">@item.DeptName</a>
+            </div>
+
+        }
+
+    </div>
+
+
+</div>
+
+
+
+
+<div style="left:300;top:30;background-color:aquamarine">
+    <div class="row">
+        <h1>View Doctors by Days</h1>
+    </div>
+    <div class="row">
+            <div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.DayOfWeek')">@DateTime.Today.DayOfWeek</a>
+            </div>
+        <div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.AddDays(1).DayOfWeek')">@DateTime.Today.AddDays(1).DayOfWeek</a>
+        </div>
+<div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.AddDays(2).DayOfWeek')">@DateTime.Today.AddDays(2).DayOfWeek</a>
+            </div>
+
+
+    </div>
+     <div class="row">
+            <div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.AddDays(3).DayOfWeek')">@DateTime.Today.AddDays(3).DayOfWeek</a>
+            </div>
+        <div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.AddDays(4).DayOfWeek')">@DateTime.Today.AddDays(4).DayOfWeek</a>
+        </div>
+<div class="col-md-2">
+            <a class="btn btn-success" onclick="OpenPopupday('@DateTime.Today.AddDays(5).DayOfWeek')">@DateTime.Today.AddDays(5).DayOfWeek</a>
+            </div>
+
+
+    </div>
+
+
+</div>
+<script>
+    function OpenPopup(deptid)
+    {
+        
+        $.ajax({
+            type:"GET",
+            url:"/doc/show/?deptid="+deptid,
+           success:function(res)
+           {
+               $(".modal-body").html(res),
+               $("#modal1").modal("show")
+           }
+        })
+
+    }
+
+
+
+
+     function OpenPopupday(day)
+    {
+        
+        $.ajax({
+            type:"GET",
+            url:"/doc/show/?day="+day,
+           success:function(res)
+           {
+               $(".modal-body").html(res),
+               $("#modal1").modal("show")
+           }
+        })
+
+
+
+    }
+</script>

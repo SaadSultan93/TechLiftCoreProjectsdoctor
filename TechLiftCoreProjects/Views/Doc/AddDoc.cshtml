@@ -1,0 +1,62 @@
+﻿@model TechLiftCoreProjects.Models.DoctorInfo
+
+<h4>DoctorInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddDoc">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DoctorDays" class="control-label"></label>
+                <input asp-for="DoctorDays" class="form-control" />
+                <span asp-validation-for="DoctorDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Department Name</label>
+                <select class="form-control" asp-for="DeptId">
+                    @foreach(var item in ViewBag.dept)
+                    {
+                        <option value=@item.DeptId>@item.DeptName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoctorTime" class="control-label"></label>
+                <input asp-for="DoctorTime" class="form-control" />
+                <span asp-validation-for="DoctorTime" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="PersonFirstName" class="control-label"></label>
+                <input asp-for="PersonFirstName" class="form-control" />
+                <span asp-validation-for="PersonFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonLastName" class="control-label"></label>
+                <input asp-for="PersonLastName" class="form-control" />
+                <span asp-validation-for="PersonLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonEmailAddress" class="control-label"></label>
+                <input asp-for="PersonEmailAddress" class="form-control" />
+                <span asp-validation-for="PersonEmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonContactDetail" class="control-label"></label>
+                <input asp-for="PersonContactDetail" class="form-control" />
+                <span asp-validation-for="PersonContactDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

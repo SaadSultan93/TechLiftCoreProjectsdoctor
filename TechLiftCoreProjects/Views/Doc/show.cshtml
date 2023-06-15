@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TechLiftCoreProjects.Models.DoctorInfo>
+
+<p>
+    <a asp-action="AddDoc">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="7">
+                <button class="btn-success" asp-action="SendAll" asp-controller="Home">Send Email To All</button>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonContactDetail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonLastName)
+            </td>
+            <td>
+                <a>home</a>
+                <a asp-action="SendEmail" asp-controller="Home" asp-route-email="@item.PersonEmailAddress" asp-route-name="@item.PersonFullName">@item.PersonEmailAddress</a>
+               @* @Html.DisplayFor(modelItem => item.PersonEmailAddress)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonContactDetail)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DoctorId">Edit</a> |
+                <a asp-action="DocDetails" asp-route-id="@item.DoctorId" class="btn btn-success">DocDetails</a> |
+                <a asp-action="Delete" asp-route-id="@item.DoctorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

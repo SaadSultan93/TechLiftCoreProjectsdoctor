@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TechLiftCoreProjects.Models.VMs.DoctorVM>
+
+
+
+@foreach (var item in Model)
+{
+    <div style="background-color:lightblue">
+        <label>FullName</label>::
+        <label>@item.DoctorFullName</label>
+    </div>
+    <div style="background-color:lightblue">
+        <label>Day</label>::
+        <label>@item.DoctorDays</label>
+    </div>
+    <div style="background-color:lightblue">
+        <label>Department Name</label>::
+        <label>@item.DepartmentName</label>
+    </div>
+
+}

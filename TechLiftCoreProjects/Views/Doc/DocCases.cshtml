@@ -1,0 +1,38 @@
+﻿@model TechLiftCoreProjects.Models.DoctorCases
+
+<h4>DoctorCases</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DocCases">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                @Html.DropDownListFor(a=>a.DoctorId,new SelectList(ViewBag.doctors,"DoctorId","PersonFullName"))
+                <input asp-for="DoctorId" class="form-control" />n
+                <span asp-validation-for="DoctorId" class="text-dager"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="casedate" class="control-label"></label>
+                <input asp-for="casedate" class="form-control" />
+                <span asp-validation-for="casedate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="caseDescription" class="control-label"></label>
+                <input asp-for="caseDescription" class="form-control" />
+                <span asp-validation-for="caseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
